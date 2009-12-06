@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(:version => 20091206184607) do
     t.string   "properties"
     t.text     "body"
     t.integer  "parent_id"
+    t.integer  "position"
     t.string   "media_file_name"
     t.string   "media_content_type"
     t.integer  "media_file_size"

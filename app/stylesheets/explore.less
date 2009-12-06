@@ -2,9 +2,11 @@
 @import 'reset.css';
 
 
-@fondo: #efefef;
-@azul: #003460;
-@azulclaro: #7F99AF;
+@fondo: #C6C8CA;
+@azul: #00AEEF;
+@azulclaro: #D4E8EF;
+@noazul: #003460;
+@noazulclaro: #7F99AF;
 
 html, body {
     background-color: @fondo;
@@ -39,10 +41,14 @@ ul.doclist {padding: 1em;}
     background-color: @azul; color: white;
 }
 
-.slot { font-size: 0px; height: 2px;
-    background-color: @azulclaro; border: 1px solid @azulclaro;}
-.slot.ready {border-color: @azul;}
-.slot.active {border-color: red;}
+ul.document > li {width: 100%; overflow: hidden; margin-bottom: 1px; border-left: 4px solid @azulclaro;}
+.slot { display: block; font-size: 0px; height: 2px; width: 50%; margin: 2px auto;
+    background-color: white; border: 1px solid white;}
+.slot.ready {background-color: @azulclaro;}
+.slot.active {border-color: @azul;}
+.sortme {display: block; overflow: hidden; float: left; width: 0.3em; height: 1.2em;
+   text-indent: -1000px; margin-right: 0.5em;
+   background-color: @azulclaro;}
 
 /** FORMS **/
 form {padding: 1em; }
@@ -53,3 +59,6 @@ form input {margin-top: 0.2em;}
 form input[type=text], form textarea {display: block; width: 98%; padding: 2px;
                                       color: white; background-color: @azul; border: 1px solid white;}
 form textarea {height: 5em;}
+
+/** BODY **/
+.body h1 {font-size: 200%;}

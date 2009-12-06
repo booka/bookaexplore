@@ -8,7 +8,7 @@ class CreateBoks < ActiveRecord::Migration
       t.string :properties, :length => 4096
       t.text :body
       t.references :parent
-      t.integfer :position
+      t.integer :position
       t.string :media_file_name
       t.string :media_content_type
       t.integer :media_file_size

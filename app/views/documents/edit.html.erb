@@ -14,6 +14,15 @@
             document.location = url;
           }
         });
+        $(".document").sortable({axis: 'y', containment: 'parent', cursor: 'crosshair',
+          opacity: 0.5, // handle: '.sortme'
+          update : function(event, ui) {
+            var new_pos = ui.item.attr('id');
+            console.log($(".document").sortable('serialize'))
+            console.debug(ui.position);
+          }
+        });
+        console.log($(".document").sortable('serialize'))
       });
     })(jQuery);
   </script>
@@ -32,8 +41,15 @@
 
 <div class="body">
   <h1><%= @document.title %></h1>
+  <span id="loc-first" class="slot">&nbsp;</span>
   <ul class="document">
-    <li id="loc-first" class="slot">&nbsp;</li>
+    <% @document.clips.each do |clip| -%>
+      <li id="clip-<%= clip.id %>">
+        <!--        <span class="sortme">drag me to sort</span> -->
+        <%= clip.body %>
+        <span id="loc-last" class="slot">&nbsp;</span>
+      </li>
+    <% end -%>
   </ul>
 </div>
 
