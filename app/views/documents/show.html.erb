@@ -2,7 +2,7 @@
 <div class="body">
   <h1><%= @document.title %></h1>
   <ul>
-    <% @document.clips do |clip| %>
+    <% @document.clips.each do |clip| %>
       <li><%= clip.body %></li>
     <% end %>
   </ul>
