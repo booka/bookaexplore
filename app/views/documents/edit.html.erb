@@ -1,0 +1,47 @@
+<% content_for :header do -%>
+  <script type="text/javascript">
+    (function($) {
+      $(function() {
+        $(".newcontent").draggable({helper: 'clone', cursor: 'crosshair', opacity: 0.6});
+        $(".slot").droppable({accept: '.newcontent', activeClass: 'ready',
+          tolerance: 'touch', hoverClass: 'active',
+          drop: function(event, ui) {
+            var new_type = ui.draggable.attr('id').substring(4);
+            var location = $(this).attr('id').substring(4);
+            var params = {'clip[parent_id]' : <%= @document.id %>, 'clip[content_type]' : new_type,
+              'clip[location]' : location};
+            var url = '<%= new_clip_path %>?' + $.param(params)
+            document.location = url;
+          }
+        });
+      });
+    })(jQuery);
+  </script>
+<% end -%>
+
+<% content_for :browser do -%>
+  <div class="panel">
+    <h1>Editar documento</h1>
+    <p>Arrastra lo que quieres añadir</p>
+    <ul class="handlers">
+      <li id="new_text" class="newcontent">Texto</li>
+      <li id="new_video" class="newcontent">Vídeo</li>
+    </ul>
+  </div>
+<% end %>
+
+<div class="body">
+  <h1><%= @document.title %></h1>
+  <ul class="document">
+    <li id="loc-first" class="slot">&nbsp;</li>
+  </ul>
+</div>
+
+
+<% content_for :properties do -%>
+  <% semantic_form_for @document do |form| %>
+    <%= form.input :title %>
+    <%= form.input :description, :as => :text %>
+    <%= form.buttons :commit %>
+  <% end %>
+<% end %>

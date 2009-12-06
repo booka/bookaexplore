@@ -1,0 +1,15 @@
+
+<% content_for :browser do -%>
+  <ul class="doclist">
+    <% @documents.each do |doc| %>
+      <li>
+        <h1><%= link_to doc.title, doc %></h1>
+        <p><%= doc.description %></p>
+      </li>
+    <% end -%>
+  </ul>
+<% end -%>
+
+<div class="actions">
+  <%= link_to t(:new), new_document_path %>
+</div>

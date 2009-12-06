@@ -1,0 +1,58 @@
+<p>
+  <b>Title:</b>
+  <%=h @clip.title %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%=h @clip.description %>
+</p>
+
+<p>
+  <b>Type:</b>
+  <%=h @clip.type %>
+</p>
+
+<p>
+  <b>Content type:</b>
+  <%=h @clip.content_type %>
+</p>
+
+<p>
+  <b>Properties:</b>
+  <%=h @clip.properties %>
+</p>
+
+<p>
+  <b>Body:</b>
+  <%=h @clip.body %>
+</p>
+
+<p>
+  <b>Media file name:</b>
+  <%=h @clip.media_file_name %>
+</p>
+
+<p>
+  <b>Media content type:</b>
+  <%=h @clip.media_content_type %>
+</p>
+
+<p>
+  <b>Media file size:</b>
+  <%=h @clip.media_file_size %>
+</p>
+
+<p>
+  <b>Media updated at:</b>
+  <%=h @clip.media_updated_at %>
+</p>
+
+<p>
+  <b>User:</b>
+  <%=h @clip.user %>
+</p>
+
+
+<%= link_to 'Edit', edit_clip_path(@clip) %> |
+<%= link_to 'Back', clips_path %>

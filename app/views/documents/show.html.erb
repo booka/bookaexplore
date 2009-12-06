@@ -1,0 +1,15 @@
+
+<div class="body">
+  <h1><%= @document.title %></h1>
+  <ul>
+    <% @document.clips do |clip| %>
+      <li><%= clip.body %></li>
+    <% end %>
+  </ul>
+</div>
+
+<% content_for :properties do -%>
+  <div class="actions">
+    <%= link_to t(:edit), edit_document_path %>
+  </div>
+<% end -%>

@@ -1,0 +1,7 @@
+
+es:
+  documents:
+    index:
+      new: "Añadir documento"
+
+      
