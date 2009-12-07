@@ -1,12 +1,8 @@
 <% content_for :header do   %>
   <%= javascript_include_tag 'jquery.archives' %>
   <script type="text/javascript">
-    (function($) {
-      $.archives.token = '<%= form_authenticity_token %>'
-      $(function() {
-        $("#workin").fadeOut();
-        $.get('<%= documents_path(:format => :js) %>', null, null, "script");
-      });
-    })(jQuery);
+    jQuery(function($) {
+      $.archives.init('<%= form_authenticity_token %>', '<%= documents_path(:format => :js) %>');
+    });
   </script>
 <% end %>

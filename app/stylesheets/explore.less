@@ -1,9 +1,12 @@
 
 @import 'reset.css';
 
+@serif: Garamond;
+@sans: verdana, arial, sans-serif;
 @fondo: #C6C8CA;
 @azul: #00AEEF;
 @azulclaro: #D4E8EF;
+
 .round {-moz-border-radius: 0.3em;-webkit-border-radius: 0.3em;}
 .round-top {-moz-border-radius: 0.3em 0.3em 0 0;-webkit-border-radius: 0.3em 0.3em 0 0;}
 .round-bottom {-moz-border-radius: 0 0 0.3em 0.3em;-webkit-border-radius: 0 0 0.3em 0.3em ;}
@@ -13,18 +16,18 @@ a:hover {text-decoration: underline;}
 
 /** LAYOUT **/
 html, body {margin:0; padding:0; width:100%; height:100%; overflow:hidden;}
-body {font-family:verdana, arial, sans-serif; font-size:76%;}
+body {font-family: @sans; font-size:76%;}
 
 #main { height: 100%; width: 100%; position: absolute; top: 0; left: 0;z-index: 1;
         background-color: @fondo; }
 #app {width: 100%; overflow: hidden; height: 80px; position: absolute; top: 0; left: 0;
       background-color: white; z-index: 2;}
 #browser {position: fixed; left: 0; top: 81px; width: 25%; bottom: 0;
-    background-color: #efefef;}
-#content {position: fixed; left: 27%; top: 100px; width: 50%; bottom: 20px; overflow: auto;
-    background-color: @fondo; }
+          background-color: #efefef;}
+#content {position: fixed; left: 27%; top: 100px; width: 50%; bottom: 20px; overflow: auto; 
+          background-color: @fondo; }
 #editor {position: fixed; right: 0; top: 81px; width: 20%; bottom: 0; overflow: auto;
-    background-color: @azul;}
+         background-color: @azul;}
 
 #app a {float: left; width: 64px; height: 64px; overflow: hidden; margin: 10px 10px 0 10px; opacity: 0.8;}
 #app a.right {float: right;}
@@ -41,47 +44,75 @@ body {font-family:verdana, arial, sans-serif; font-size:76%;}
 /** BROWSER **/
 #browser .actions {width: 100%; overflow: hidden; margin-bottom: 0.5em;}
 #browser .actions a {display: block; float: left; padding: 0.2em 1em;
-    margin: 0.3em 0 0 0.3em; color: white;
-    background-color: @azul; .round;}
+                     margin: 0.3em 0 0 0.3em; color: white;
+                     background-color: @azul; .round;}
 
 #browser .summaries {margin-top: 1em; }
 #browser .summaries li { width: 100%; overflow: hidden;
-    margin-bottom: 1px; padding-bottom: 0.5em;
-    background-color: white;
+                         margin-bottom: 1px; padding-bottom: 0.5em;
+                         background-color: white;
 }
 #browser .summary {color: gray;}
-#browser .summary p {font-size: 90%; font-family: Garamond; margin-left: 1.5em; font-style: italic; margin-bottom: 0.2em;}
-#browser .summary h1 {display: block; font-family: Garamond; font-size: 120%; margin: 0.2em 0.5em 0 0.5em;
-    opacity: 0.7;}
+#browser .summary p {font-size: 90%; font-family: @serif; margin-left: 1.5em; font-style: italic; margin-bottom: 0.2em;}
+#browser .summary h1 {display: block; font-family: @serif; font-size: 120%; margin: 0.2em 0.5em 0 0.5em;
+                      opacity: 0.7;}
 #browser ul li.summary a {color: black;}
 #browser ul li ul.properties li {margin-left: 2em; font-size: 80%;}
 
 /** CONTENT **/
 .page { width: 80%; margin: 0px auto; min-height: 900px;
-    background-color: white;}
-.document { font-size: 110%; padding: 1em; font-family: Garamond;}
-.document h1 {font-size: 200%;}
+        background-color: white;}
+.document {
+    font-size: 110%; padding: 1em;
+    font-family: @serif;}
+.document h1 {font-size: 200%; text-align: center;}
+.document p.description {text-align: center;}
 
-.document .slot { display: block; font-size: 0px; height: 2px; width: 50%; margin: 2px auto;
-    background-color: @azulclaro; border: 1px solid white;}
-.document .slot.ready {background-color: @azulclaro;}
+.document .slot {
+    display: block;  margin: 2px auto; color: white;
+    background-color: @azulclaro; border: 1px solid white;
+}
+.document .slot.ready {
+    height: 2px; width: 50%;
+    background-color: @azulclaro;
+}
+.document .slot.armed {height: 4px;}
 .document .slot.active {border-color: @azul;}
 .document .sortme {display: block; overflow: hidden; float: left; width: 0.3em; height: 1.2em;
-   text-indent: -1000px; margin-right: 0.5em;
-   background-color: @azulclaro;}
+                   text-indent: -1000px; margin-right: 0.5em;
+                   background-color: @azulclaro;}
+
+.document .slot.editor {
+    width: 100%; 
+    background-color: @azul;}
+
+.slot.editor {
+    font-size: 80%;
+    font-family: @sans; }
+.slot.editor form { margin: 0.5em 1em;}
+.slot.editor input[type=submit] {
+    margin: 2px 1em 0 -1px; }
+
+/** FORMS **/
+form li label {}
+form textarea {
+    width: 100%; height: 4em;
+    color: white; background-color: @azul; border: 1px solid @azulclaro;}
+
+
 
 /** EDITOR **/
 #editor {color: white;}
 #editor .properties {margin: 1em;}
 #editor .properties li label {display: block; margin: 0.5em 0 0.2em 0;}
 #editor .properties li .editable {display: block; padding: 2px;
-    border: 1px solid @azulclaro;}
+                                  border: 1px solid @azulclaro;}
 
 #editor .addcontent {margin: 0 1em; }
 #editor .addcontent p {display: block; color: gray; background-color: white; padding: 0.5em; }
 #editor .addcontent h1 {display: block; padding: 0.2em 0.5em;
-    background-color: @azulclaro; color: black; .round-top;}
+                        background-color: @azulclaro; color: black; .round-top;}
 #editor .addcontent ul {width: 100%; overflow: hidden; display: block; 
-    background-color: white; .round-bottom;}
+                        background-color: white; .round-bottom;}
 #editor .newcontent {display: block; float: left; padding: 0.3em 2em; margin: 0.3em 0.5em;
-    background-color: @azul; color: white; .round;}
+                     background-color: @azul; color: white; .round;}

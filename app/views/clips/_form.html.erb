@@ -1,7 +1,12 @@
 <% form_for(@clip) do |form| %>
-  <%= form.text_field :content_type %>
-  <%= form.text_field :parent_id %>
-  <%= form.text_field :location %>
-  <%= form.text_area :body %>
-<%= form.submit 'Crear' %>
+  <%= form.hidden_field :content_type %>
+  <%= form.hidden_field :parent_id %>
+  <%= form.hidden_field :location %>
+  <li>
+    <label>Body</label>
+    <%= form.text_area :body %>
+  </li>
+  <li class="actions">
+    <%= form.submit 'Crear' %><%= link_to 'Cancelar', clips_path %>
+  </li>
 <% end %>

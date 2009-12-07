@@ -1,1 +1,4 @@
-<%= render 'document.js' %>
+$("#content").html("<%= escape_javascript(render 'document.html') %>");
+$("#editor").html("<%= escape_javascript(render 'properties') %>");
+$.archives.setPropertiesEditable('<%= document_path(@document) %>');
+$.archives.setDocumentEditable(<%= @document.id %>, '<%= new_clip_path %>');
