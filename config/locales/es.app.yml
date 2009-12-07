@@ -1,7 +1,8 @@
-
 es:
   documents:
-    index:
-      new: "Añadir documento"
-
-      
+    create:
+      article: "Añadir artículo"
+      project: "Añadir proyecto"
+    properties:
+      title: "Título"
+      description: "Descripción breve"

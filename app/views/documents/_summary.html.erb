@@ -1,0 +1,7 @@
+<li class="summary">
+  <h1><%= link_to summary.title, summary %></h1>
+  <p><%= summary.description %></p>
+  <ul class="properties">
+    <li><label>Modificado</label> <span class="time_ago"><%= summary.updated_at.to_i %></span></li>
+  </ul>
+</li>

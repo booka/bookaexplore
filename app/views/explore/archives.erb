@@ -1,0 +1,10 @@
+<% content_for :header do   %>
+<script type="text/javascript">
+  (function($) {
+    $(function() {
+      $("#workin").fadeOut();
+      $.get('<%= documents_path(:format => :js) %>', null, null, "script");
+    });
+  })(jQuery);
+</script>
+<% end %>

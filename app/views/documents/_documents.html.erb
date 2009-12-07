@@ -1,0 +1,12 @@
+
+<div class="documents">
+  <div class="actions">
+    <%= link_to t('create.article'), new_document_path %>
+    <%= link_to t('create.project'), new_document_path %>
+  </div>
+  <ul class="summaries">
+    <% @documents.each do |doc| %>
+    <%= render :partial => 'summary', :object => doc %>
+    <% end -%>
+  </ul>
+</div>

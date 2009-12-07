@@ -1,0 +1,24 @@
+$("#content").html("<%= escape_javascript(render 'document.html') %>");
+$("#editor").html("<%= escape_javascript(render 'properties') %>");
+$(".newcontent").draggable({helper: 'clone', cursor: 'crosshair', opacity: 0.6});
+
+$(".slot").droppable({accept: '.newcontent', activeClass: 'ready',
+  tolerance: 'touch', hoverClass: 'active',
+  drop: function(event, ui) {
+    var new_type = ui.draggable.attr('id').substring(4);
+    var location = $(this).attr('id').substring(4);
+    var params = {'clip[parent_id]' : <%= @document.id %>, 'clip[content_type]' : new_type,
+    'clip[location]' : location};
+    var url = '<%= new_clip_path %>?' + $.param(params)
+    document.location = url;
+  }
+});
+
+$(".clips").sortable({axis: 'y', containment: 'parent', cursor: 'crosshair',
+  opacity: 0.5, // handle: '.sortme'
+  update : function(event, ui) {
+    var new_pos = ui.item.attr('id');
+    console.log($(".document").sortable('serialize'))
+    console.debug(ui.position);
+  }
+});
