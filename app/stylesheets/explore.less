@@ -23,7 +23,7 @@ body {font-family:verdana, arial, sans-serif; font-size:76%;}
     background-color: #efefef;}
 #content {position: fixed; left: 27%; top: 100px; width: 50%; bottom: 20px; overflow: auto;
     background-color: @fondo; }
-#editor {position: fixed; right: 0; top: 81px; width: 20%; bottom: 0;
+#editor {position: fixed; right: 0; top: 81px; width: 20%; bottom: 0; overflow: auto;
     background-color: @azul;}
 
 #app a {float: left; width: 64px; height: 64px; overflow: hidden; margin: 10px 10px 0 10px; opacity: 0.8;}
@@ -44,7 +44,7 @@ body {font-family:verdana, arial, sans-serif; font-size:76%;}
     margin: 0.3em 0 0 0.3em; color: white;
     background-color: @azul; .round;}
 
-#browser .summaries {margin-top: 1em;}
+#browser .summaries {margin-top: 1em; }
 #browser .summaries li { width: 100%; overflow: hidden;
     margin-bottom: 1px; padding-bottom: 0.5em;
     background-color: white;
@@ -63,7 +63,7 @@ body {font-family:verdana, arial, sans-serif; font-size:76%;}
 .document h1 {font-size: 200%;}
 
 .document .slot { display: block; font-size: 0px; height: 2px; width: 50%; margin: 2px auto;
-    background-color: white; border: 1px solid white;}
+    background-color: @azulclaro; border: 1px solid white;}
 .document .slot.ready {background-color: @azulclaro;}
 .document .slot.active {border-color: @azul;}
 .document .sortme {display: block; overflow: hidden; float: left; width: 0.3em; height: 1.2em;

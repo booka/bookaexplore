@@ -1,11 +1,11 @@
 <ul class="properties">
   <li>
     <label><%= t(:title) %></label>
-    <span class="editable"><%= @document.title %></span>
+    <span id="document-<%= @document.id %>-title" class="editable"><%= @document.title %></span>
   </li>
   <li>
     <label><%= t(:description) %></label>
-    <span class="editable"><%= @document.description %></span>
+    <span id="document-<%= @document.id %>-description" class="editable"><%= @document.description %></span>
   </li>
 </ul>
 <div class="addcontent">

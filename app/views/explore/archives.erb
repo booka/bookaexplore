@@ -1,10 +1,12 @@
 <% content_for :header do   %>
-<script type="text/javascript">
-  (function($) {
-    $(function() {
-      $("#workin").fadeOut();
-      $.get('<%= documents_path(:format => :js) %>', null, null, "script");
-    });
-  })(jQuery);
-</script>
+  <%= javascript_include_tag 'jquery.archives' %>
+  <script type="text/javascript">
+    (function($) {
+      $.archives.token = '<%= form_authenticity_token %>'
+      $(function() {
+        $("#workin").fadeOut();
+        $.get('<%= documents_path(:format => :js) %>', null, null, "script");
+      });
+    })(jQuery);
+  </script>
 <% end %>

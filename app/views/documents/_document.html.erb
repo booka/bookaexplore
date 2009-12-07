@@ -1,14 +1,15 @@
 <div class="page">
   <% div_for @document do %>
-  <h1><%= @document.title %></h1>
-  <span id="loc-first" class="slot">&nbsp;</span>
-  <ul class="clips">
-    <% @document.clips.each do |clip| -%>
-      <li id="clip-<%= clip.id %>">
-        <%= clip.body %>
-        <span id="loc-last" class="slot">&nbsp;</span>
-      </li>
-    <% end -%>
-  </ul>
+    <h1 class="<%= atag @document, :title %>"><%= @document.title %></h1>
+    <p class="<%= atag(@document, :description) %>"><%= @document.description %></p>
+    <span id="loc-first" class="slot">&nbsp;</span>
+    <ul class="clips">
+      <% @document.clips.each do |clip| -%>
+        <li id="clip-<%= clip.id %>">
+          <%= clip.body %>
+          <span id="loc-last" class="slot">&nbsp;</span>
+        </li>
+      <% end -%>
+    </ul>
   <% end %>
 </div>

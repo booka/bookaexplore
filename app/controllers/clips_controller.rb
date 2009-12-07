@@ -1,5 +1,6 @@
 class ClipsController < ApplicationController
   inherit_resources
+  respond_to :html, :xml, :json, :js
 
   def new
     @clip = Clip.new(params[:clip])
