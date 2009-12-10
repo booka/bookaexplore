@@ -1,3 +1,17 @@
-$("#browser").html("<%= escape_javascript(render("documents")) %>");
-$("#browser .documents h1 a").ajaxize();
-$("#browser .actions a").ajaxize();
+<div class="browser">
+  <div class="actions">
+    <%= link_to t('create.article'), new_document_path %>
+    <%= link_to t('create.project'), new_document_path %>
+  </div>
+  <ul class="summaries">
+    <% @documents.each do |doc| %>
+      <li class="summary">
+        <h1><%= link_to doc.title, doc, :class => atag(doc, :title) %></h1>
+        <p class="<%= atag(doc, :description) %>"><%= doc.description %></p>
+        <ul class="properties">
+          <li><label>Modificado</label> <span class="time_ago"><%= doc.updated_at.to_i %></span></li>
+        </ul>
+      </li>
+    <% end -%>
+  </ul>
+</div>

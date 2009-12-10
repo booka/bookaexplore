@@ -1,8 +1,10 @@
 <% content_for :header do   %>
-  <%= javascript_include_tag 'jquery.archives' %>
+  <%= javascript_include_tag 'booka.common', 'booka.browser', 'booka.explorer',
+    'booka.document', 'booka.clip', 'booka.propertier', 'booka.slot' %>
   <script type="text/javascript">
     jQuery(function($) {
-      $.archives.init('<%= form_authenticity_token %>', '<%= documents_path(:format => :js) %>');
+      $("#explorer").explorer({token : '<%= form_authenticity_token %>'});
+      //      $.archives.init('<%= form_authenticity_token %>', '<%= documents_path(:format => :js) %>');
     });
   </script>
 <% end %>

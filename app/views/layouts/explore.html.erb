@@ -22,13 +22,15 @@
         <%= navigate_to 'account', :right %>
         <%= navigate_to 'contact', :right %>
       </div>
-      <div id="browser">
-        <%= yield :browser %>
-      </div>
-      <div id="content">
-      </div>
-      <div id="editor">
-        <%= yield :editor %>
+      <div id="explorer">
+        <div id="browser">
+          <%= yield :browser %>
+        </div>
+        <div id="content">
+        </div>
+        <div id="editor">
+          <%= yield :editor %>
+        </div>
       </div>
     </div>
   </body>

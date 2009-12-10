@@ -1,4 +1,37 @@
-$("#content").html("<%= escape_javascript(render 'document.html') %>");
-$("#editor").html("<%= escape_javascript(render 'properties') %>");
-$.archives.setPropertiesEditable('<%= document_path(@document) %>');
-$.archives.setDocumentEditable(<%= @document.id %>, '<%= new_clip_path %>');
+<div id="document">
+  <div class="page">
+    <% div_for @document do %>
+      <h1 class="<%= atag @document, :title %>"><%= @document.title %></h1>
+      <p class="description <%= atag(@document, :description) %>"><%= @document.description %></p>
+      <ul class="clips">
+        <% @document.clips.each do |clip| -%>
+          <li id="clip-<%= clip.id %>">
+            <%= clip.body %>
+          </li>
+        <% end -%>
+      </ul>
+    <% end %>
+  </div>
+</div>
+
+
+<div id="editor">
+  <ul class="properties">
+    <li>
+      <label><%= t(:title) %></label>
+      <span id="document-<%= @document.id %>-title" class="editable"><%= @document.title %></span>
+    </li>
+    <li>
+      <label><%= t(:description) %></label>
+      <span id="document-<%= @document.id %>-description" class="editable"><%= @document.description %></span>
+    </li>
+  </ul>
+  <div class="addcontent">
+    <h1>Añadir al documento</h1>
+    <p>Arrastra lo que quieres añadir</p>
+    <ul class="handlers">
+      <li id="new_text" class="newcontent">Texto</li>
+      <li id="new_video" class="newcontent">Vídeo</li>
+    </ul>
+  </div>
+</div>
