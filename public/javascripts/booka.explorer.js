@@ -9,7 +9,7 @@
             $("#browser").browser({documents_path :this.options.documents_path});
         },
         destroy: function() {
-            $.widget.prototype.apply(this, arguments); // default destroy
+            $.widget.prototype.destroy.apply(this, arguments); // default destroy
         }
     });
     $.extend($.ui.explorer, {

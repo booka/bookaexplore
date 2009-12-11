@@ -33,7 +33,7 @@
         },
 
         destroy: function() {
-            $.widget.prototype.apply(this, arguments); // default destroy
+            $.widget.prototype.destroy.apply(this, arguments); // default destroy
         }
     });
     
