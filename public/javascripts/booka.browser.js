@@ -2,7 +2,7 @@
     $.widget("ui.browser", {
         _init: function() {
             this.element.load(this.options.documents_path, function() {
-                $(this).find("h1>a").each(function() {
+                $("h1>a", this.element).each(function() {
                     $(this).attr('href', '#' + $(this).attr('href'));
                 })
             });

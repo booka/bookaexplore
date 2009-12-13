@@ -1,6 +1,6 @@
 <% content_for :header do   %>
   <%= javascript_include_tag 'booka.common', 'booka.browser', 'booka.explorer',
-    'booka.document', 'booka.clip', 'booka.propertier', 'booka.slot' %>
+    'booka.document', 'booka.clip', 'booka.propertier', 'booka.slot', 'booka.clipeditor' %>
   <script type="text/javascript">
     jQuery(function($) {
       $("#explorer").explorer({token : '<%= form_authenticity_token %>'});

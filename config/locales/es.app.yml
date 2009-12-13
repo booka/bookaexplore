@@ -3,6 +3,6 @@ es:
     create:
       article: "Añadir artículo"
       project: "Añadir proyecto"
-    properties:
+    show:
       title: "Título"
       description: "Descripción breve"

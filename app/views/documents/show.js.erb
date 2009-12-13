@@ -1,4 +1,4 @@
-<div id="document">
+<div id="document-<%= @document.id %>" class="document">
   <div class="page">
     <% div_for @document do %>
       <h1 class="<%= atag @document, :title %>"><%= @document.title %></h1>
@@ -15,7 +15,7 @@
 </div>
 
 
-<div id="editor">
+<div id="document-editor<%= @document.id %>" class="editor">
   <ul class="properties">
     <li>
       <label><%= t(:title) %></label>

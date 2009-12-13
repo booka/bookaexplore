@@ -6,17 +6,31 @@
             var self = this;
             $(window).bind( 'hashchange', function(e) {
                 var url = $.param.fragment() + '.js';
-                $.get(url, function(responseHtml, status) {
-                    console.log("TODO check status: " + status);
-                    var holder = $('<div/>').html(responseHtml);
-                    self.element.html($('#document', holder).html());
-                    $('#editor').html($('#editor', holder).html());
-                    self._prepareDraggables();
-                    self._createSlots();
-                    $("#editor .properties").propertier({token : self.options.token});
-                });
+                if (url.length > 3) {
+                    self._loadDocument(url);
+                }
             });
             $(window).trigger( 'hashchange' );
+        },
+
+        _loadDocument : function(url) {
+            var self = this;
+            $.get(url, function(responseHtml, status) {
+                console.log("Document receveid. Status: " + status + " (FIXME - check it)");
+                var holder = $('<div/>').html(responseHtml);
+                self.element.html($('.document', holder).html());
+                self.options.documentID = $('.document', holder).attr('id').substring(9);
+                $('#editor').html($('.editor', holder).html());
+
+                self._prepareDraggables();
+                self._createClips();
+                $("#editor .properties").propertier();
+                console.log("document path: " , self._getDocumentPath());
+            });
+        },
+
+        _getDocumentPath : function() {
+            return '/docs/' + this.options.documentID;
         },
 
         _prepareDraggables : function() {
@@ -28,31 +42,39 @@
             });
         },
 
-        _addClip : function(target, contentType, location) {
+        _newClip : function(target, contentType, location) {
+            var self = this;
+
             var params = {
-                'clip[parent_id]' : this.options.documentId,
                 'clip[content_type]' : contentType,
                 'clip[location]' : location
             };
 
-            $.get(this.options.newClipPath, $.param(params), function(html, status) {
-                target.slot('setEditor', html);
-            });
+            $.get(self._getDocumentPath() + self.options.newClipPath,
+                $.param(params), function(html, status) {
+                    var newClip = $('<li />');
+                    newClip.insertAfter(target).clip({
+                        drop: function(target, contentType, location) {
+                            self._newClip(target, contentType, location);
+                        }
+                    }).clip('setEditor', html);
+                });
         },
 
-        _createSlots : function() {
+        _createClips : function() {
             var self = this;
-            var callback = function(target, contentType, location) {
-                self._addClip(target, contentType, location);
-            };
-
+            var ondropped = function(target, contentType, location) {
+                self._newClip(target, contentType, location);
+            }
             var first = $("<div />").slot({
                 location : 'first',
-                drop : callback
+                drop : ondropped
             });
-            $('.clips', this.element).before(first);
+            $('.clips', this.element).prepend(first);
+            var documentPath = self._getDocumentPath();
             $('.clips li', this.element).clip({
-                drop: callback
+                documentPath : documentPath,
+                drop: ondropped
             });
         },
 
@@ -65,8 +87,6 @@
         defaults: {
             editable: true,
             newClipPath : '/clips/new.js'
-
-        },
-        token : null // required
+        }
     });
 })(jQuery);

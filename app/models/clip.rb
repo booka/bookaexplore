@@ -1,7 +1,9 @@
 class Clip < Bok
   after_save :move_to_location
   attr_accessor :location
-  belongs_to :parent, :class_name => 'Document'
+
+  belongs_to :document, :class_name => 'Document', :foreign_key => 'parent_id'
+  
   acts_as_list :scope => :parent
 
   private

@@ -15,31 +15,15 @@
             });
         },
 
-        setEditor : function(html) {
-            var target = this.element;
-            target.slideUp().removeClass('ready').addClass('editor').html(html);
-            $("form .actions a", target).click(function(event) {
-                event.preventDefault();
-                target.slideUp(function() {
-                    target.removeClass('editor').addClass('ready').empty().slideDown()
-                });
-                return false;
-            });
-            $("form", target).submit(function() {
-                $.post(this.action, $(this).serialize(), null, "script");
-                return false;
-            });
-            target.slideDown('slow');
-        },
-
         destroy: function() {
             $.widget.prototype.destroy.apply(this, arguments); // default destroy
-        },
+        }
 
 
     });
     
     $.extend($.ui.slot, {
+        getter: "getID ",
         defaults: {
             drop : function(element, contentType, location) {
             }

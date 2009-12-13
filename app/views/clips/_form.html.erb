@@ -1,4 +1,4 @@
-<% form_for(@clip) do |form| %>
+<% form_for([@clip.document, @clip]) do |form| %>
   <%= form.hidden_field :content_type %>
   <%= form.hidden_field :parent_id %>
   <%= form.hidden_field :location %>
@@ -7,6 +7,6 @@
     <%= form.text_area :body %>
   </li>
   <li class="actions">
-    <%= form.submit 'Crear' %><%= link_to 'Cancelar', clips_path %>
+    <%= form.submit 'Crear' %><%= link_to 'Cancelar', document_path(@clip.document), :class => 'cancel' %>
   </li>
 <% end %>

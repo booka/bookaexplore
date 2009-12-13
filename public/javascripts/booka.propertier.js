@@ -25,6 +25,8 @@
                 var id = $(this).attr('id').split('-');
                 editProperty(self.options.token, id[1], id[2], value);
                 return value;
+            }, {
+                style   : 'display: inline'
             });
         },
 
@@ -38,5 +40,4 @@
             token : null // required
         }
     });
-    console.log("propertier module installed");
 })(jQuery);
