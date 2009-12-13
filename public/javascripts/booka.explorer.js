@@ -5,7 +5,8 @@
         // options: provided by framework
         // element: provided by framework
         _init: function() {
-            $("#content").document();
+            $.bka.token = this.options.token;
+            $("#content").document({token : this.options.token});
             $("#browser").browser({documents_path :this.options.documents_path});
         },
         destroy: function() {

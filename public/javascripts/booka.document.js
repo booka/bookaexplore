@@ -13,6 +13,7 @@
                     $('#editor').html($('#editor', holder).html());
                     self._prepareDraggables();
                     self._createSlots();
+                    $("#editor .properties").propertier({token : self.options.token});
                 });
             });
             $(window).trigger( 'hashchange' );
@@ -65,6 +66,7 @@
             editable: true,
             newClipPath : '/clips/new.js'
 
-        }
+        },
+        token : null // required
     });
 })(jQuery);

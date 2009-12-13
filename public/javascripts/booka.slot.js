@@ -34,7 +34,9 @@
 
         destroy: function() {
             $.widget.prototype.destroy.apply(this, arguments); // default destroy
-        }
+        },
+
+
     });
     
     $.extend($.ui.slot, {
