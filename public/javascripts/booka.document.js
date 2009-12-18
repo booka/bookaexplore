@@ -10,7 +10,6 @@
                     self._loadDocument(url);
                 }
             });
-            $(window).trigger( 'hashchange' );
         },
 
         _loadDocument : function(url) {

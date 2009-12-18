@@ -15,6 +15,7 @@ Rails::Initializer.run do |config|
   config.gem 'translator', :sounce => 'http://gemcutter.org'
   config.gem 'inherited_resources', :source => 'http://gemcutter.org'
   config.gem 'less'
+  config.gem 'jammit'
 
   config.time_zone = 'UTC'
 

@@ -1,19 +1,20 @@
 (function($) {
-
-
-    $.widget("ui.explorer", {
+    $.widget("ui.booka", {
         // options: provided by framework
         // element: provided by framework
         _init: function() {
             $.bka.token = this.options.token;
             $("#content").document();
-            $("#browser").browser({documents_path :this.options.documents_path});
+            $("#browser").browser({
+                documents_path :this.options.documents_path
+                });
+            $(window).trigger( 'hashchange' );
         },
         destroy: function() {
-            $.widget.prototype.destroy.apply(this, arguments); // default destroy
+            $.widget.prototype.destroy.apply(this, arguments); 
         }
     });
-    $.extend($.ui.explorer, {
+    $.extend($.ui.booka, {
         getter: "length ", //for methods that are getters, not chainables
         defaults: {
             editable: true,

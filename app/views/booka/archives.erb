@@ -1,0 +1,10 @@
+<% content_for :header do   %>
+  <%= stylesheet_link_tag 'explore' %>
+  <%= include_javascripts :archives %>
+  <script type="text/javascript">
+    jQuery(function($) {
+      $("#booka").booka({token : '<%= form_authenticity_token %>'});
+      //      $.archives.init('<%= form_authenticity_token %>', '<%= documents_path(:format => :js) %>');
+    });
+  </script>
+<% end %>

@@ -1,0 +1,16 @@
+embed_images: on
+
+javascripts:
+  archives:
+    - public/javascripts/booka.booka.js
+    - public/javascripts/booka.browser.js
+    - public/javascripts/booka.clip.js
+    - public/javascripts/booka.clipeditor.js
+    - public/javascripts/booka.common.js
+    - public/javascripts/booka.document.js
+    - public/javascripts/booka.properties.js
+    - public/javascripts/booka.slot.js
+    - public/javascripts/booka.archives.js
+    - public/javascripts/jquery.ba-bbq.min.js
+    - public/javascripts/jquery.jeditable.mini.js
+
