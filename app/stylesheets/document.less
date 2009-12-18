@@ -1,0 +1,74 @@
+
+@import 'common.less';
+
+/** CONTENT **/
+.page { width: 80%; margin: 0px auto; min-height: 900px;
+        border: 1px solid gray;
+        background-color: white;}
+.document {
+    font-size: 110%; padding: 1em;
+    font-family: @serif;}
+.document h1 {font-size: 200%; text-align: center;}
+.document p.description {text-align: center;}
+
+.document .slot {
+    display: block;  margin: 2px auto; color: white;
+    background-color: @azulclaro; border: 1px solid white;
+}
+.document .slot.ready {
+    height: 2px; width: 50%;
+    background-color: @azulclaro;
+}
+.document .slot.armed {height: 4px;}
+.document .slot.active {border-color: @azul;}
+.document .sortme {display: block; overflow: hidden; float: left; width: 0.3em; height: 1.2em;
+                   text-indent: -1000px; margin-right: 0.5em;
+                   background-color: @azulclaro;}
+
+.document .slot.editor {
+    width: 100%;
+    background-color: @azul;}
+
+.clip {width: 100%; overflow: hidden; padding: 0.1em; .round;}
+.clip.active {background-color: @azulclaro;}
+.clip .actions {float: right;}
+.clip .actions a {
+    font-size: 75%; padding: 0.1em 0.5em; margin-right: 1em;
+    color: white; background-color: @azul; .round;
+}
+
+.clip-editor {
+    font-size: 80%; background-color: @azul; color: white; padding: 0.5em 0;
+    font-family: @sans; }
+.clip-editor form { margin: 0.5em 1em;}
+.clip-editor input[type=submit] {
+    margin: 2px 1em 0 -1px; }
+
+/** FORMS **/
+form li label {}
+form textarea {
+    width: 100%; height: 4em;
+    color: white; background-color: @azul; border: 1px solid @azulclaro;}
+
+
+
+/** EDITOR **/
+#editor {color: white;}
+#editor .properties {margin: 1em;}
+#editor .properties li label {display: block; margin: 0.5em 0 0.2em 0;}
+#editor .properties  .editable {
+    display: block; padding: 2px;
+    border: 1px solid @azulclaro;}
+#editor .editable input {
+    border: 1px solid white; padding: 2px; width: 80%;
+    background-color: white; color: @azul;
+}
+
+#editor .addcontent {margin: 0 1em; }
+#editor .addcontent p {display: block; color: gray; background-color: white; padding: 0.5em; }
+#editor .addcontent h1 {display: block; padding: 0.2em 0.5em;
+                        background-color: @azulclaro; color: black; .round-top;}
+#editor .addcontent ul {width: 100%; overflow: hidden; display: block;
+                        background-color: white; .round-bottom;}
+#editor .newcontent {display: block; float: left; padding: 0.3em 2em; margin: 0.3em 0.5em;
+                     background-color: @azul; color: white; .round;}

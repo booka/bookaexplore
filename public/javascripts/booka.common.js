@@ -20,7 +20,7 @@
     $.fn.extend({
         debug: function() {
             return this.each(function(){
-                $(this).css('border', '1px solid red');
+                $(this).css('border', '1px solid red').css('background-color', '#c00');
             });
         }
     });
