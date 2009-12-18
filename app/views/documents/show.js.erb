@@ -6,7 +6,9 @@
       <ul class="clips">
         <% @document.clips.each do |clip| -%>
           <li id="clip-<%= clip.id %>">
-            <%= clip.body %>
+            <div class="body">
+              <%= clip.body %>
+            </div>
           </li>
         <% end -%>
       </ul>
@@ -14,6 +16,10 @@
   </div>
 </div>
 
+<div id="content-selector<%= @document.id %>" class="contentSelector">
+  <%=  link_to 'Texto', new_document_clip_path(@document, :content_type => 'text', :format => 'js') %>
+  <%=  link_to 'Video', new_document_clip_path(@document, :content_type => 'video', :format => 'js') %>
+</div>
 
 <div id="document-editor<%= @document.id %>" class="editor">
   <ul class="properties">

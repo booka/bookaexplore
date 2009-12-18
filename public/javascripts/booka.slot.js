@@ -1,18 +1,27 @@
 (function($) {
     $.widget("ui.slot", {
+        contentSelector : null,
+        
         _init: function() {
             var self = this;
-            this.element.addClass('slot').addClass('ready').droppable({
-                accept: '.newcontent',
-                activeClass: 'armed',
-                tolerance: 'touch',
-                hoverClass: 'active',
-                drop: function(event, ui) {
-                    var contentType = ui.draggable.attr('id').substring(4);
-                    var location = self.options.location;
-                    self.options.drop(self.element, contentType, location);
-                }
+            self.contentSelector = $(self.options.contentSelector);
+            self.element.addClass('slot');
+            
+            self.element.click(function() {
+                self.selector(!$(this).hasClass('active'));
             });
+        },
+
+        selector : function(visible) {
+            var element = this.element;
+            if (visible) {
+                element.addClass('active');
+                this.contentSelector.hide().appendTo(element).slideDown();
+            } else {
+                this.contentSelector.slideUp(function() {
+                    element.removeClass('active');
+                });
+            }
         },
 
         destroy: function() {
@@ -25,8 +34,7 @@
     $.extend($.ui.slot, {
         getter: "getID ",
         defaults: {
-            drop : function(element, contentType, location) {
-            }
+            contentSelector : '<div class="contentSelector">Error</div>'
         }
     });
 })(jQuery);

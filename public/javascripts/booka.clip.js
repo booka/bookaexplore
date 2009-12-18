@@ -2,15 +2,14 @@
     $.widget("ui.clip", {
         _init: function() {
             var self = this;
-            var clipID = this.getClipID();
-            if (clipID != null)
-                this._addSlot();
-            self.element.hover(function() {
-                var actions = $('<div class="actions"><a href="#" class="edit">editar</a><a href="#" class="delete">borrar</a></div>');
-                $(this).addClass('active').append(actions);
-            }, function() {
-                $(this).removeClass('active');
-                $('.actions', this).remove();
+
+            var actions = $(self.options.actions);
+            self.element.addClass('clip');
+            self.element.append(actions);
+            self.element.click(function() {
+                var element = $(this);
+                element.toggleClass('active');
+                $('.actions', element).slideToggle();
             });
 
             $("a.edit", this.element).live("click", function(event) {
@@ -69,6 +68,8 @@
         }
     });
     $.extend($.ui.clip, {
-        defaults: {        }
+        defaults: {      
+            actions: '<div class="actions" style="display: none;"><a href="#" class="edit">Editar</a><a href="#" class="delete">Borrar</a></div>'
+        }
     });
 })(jQuery);

@@ -12,15 +12,14 @@
 .document p.description {text-align: center;}
 
 .document .slot {
-    display: block;  margin: 2px auto; color: white;
+    width: 50%;
+    display: block;  margin: 2px auto; color: white; padding: 1px 0;
     background-color: @azulclaro; border: 1px solid white;
 }
-.document .slot.ready {
-    height: 2px; width: 50%;
-    background-color: @azulclaro;
+.document .slot:hover {border-color: @azul;}
+.document .slot.active {
+    width: 100%; border-color: @azul; background-color: @grisclaro;
 }
-.document .slot.armed {height: 4px;}
-.document .slot.active {border-color: @azul;}
 .document .sortme {display: block; overflow: hidden; float: left; width: 0.3em; height: 1.2em;
                    text-indent: -1000px; margin-right: 0.5em;
                    background-color: @azulclaro;}
@@ -29,12 +28,31 @@
     width: 100%;
     background-color: @azul;}
 
-.clip {width: 100%; overflow: hidden; padding: 0.1em; .round;}
-.clip.active {background-color: @azulclaro;}
-.clip .actions {float: right;}
+.document .contentSelector {
+    font-family: @sans; font-size: 80%;
+    width: 100%; overflow: hidden;
+}
+
+.document .contentSelector a {
+    color: white; background-color: @gris; .button; margin: 3px;
+}
+
+.document .clip {
+    width: 100%; overflow: hidden; border: 1px solid white;
+}
+.document .clip:hover {border-color: @azulclaro;}
+
+.document .clip .body {
+    padding: 3px;
+}
+
+.clip .actions {
+    width: 100%; overflow: hidden; font-size: 70%;
+    font-family: @sans; background-color: @grisclaro;
+}
 .clip .actions a {
-    font-size: 75%; padding: 0.1em 0.5em; margin-right: 1em;
-    color: white; background-color: @azul; .round;
+    margin: 3px 1em 3px 3px;
+    color: white; background-color: @gris; .button;
 }
 
 .clip-editor {

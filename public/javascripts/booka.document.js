@@ -1,44 +1,47 @@
 (function($) {
+
+    urlRegex = /\/docs\/(\d+)/
+
     $.widget("ui.document", {
-        // options: provided by framework
-        // element: provided by framework
+        contentSelector : null,
+        
         _init: function() {
             var self = this;
             $(window).bind( 'hashchange', function(e) {
-                var url = $.param.fragment() + '.js';
-                if (url.length > 3) {
-                    self._loadDocument(url);
+                var fragment = $.param.fragment();
+                var result = urlRegex.exec(fragment);
+                if (result != null) {
+                    self._loadDocument(result[1]);
                 }
             });
         },
 
-        _loadDocument : function(url) {
+        _loadDocument : function(id) {
             var self = this;
+            var url = self.options.docsPath + "/" + id + ".js";
             $.get(url, function(responseHtml, status) {
                 console.log("Document receveid. Status: " + status + " (FIXME - check it)");
                 var holder = $('<div/>').html(responseHtml);
                 self.element.html($('.document', holder).html());
                 self.options.documentID = $('.document', holder).attr('id').substring(9);
-                $('#editor').html($('.editor', holder).html());
 
-                self._prepareDraggables();
+                self._createContentSelector(holder);
                 self._createClips();
-                $("#editor .properties").propertier();
                 console.log("document path: " , self._getDocumentPath());
+            });
+        },
+
+        _createContentSelector : function (holder) {
+            this.contentSelector = $('.contentSelector', holder);
+            $('a', this.contentSelector).click(function(e) {
+                var slot = $(this).parent().parent();
+                slot.slot('selector', false).load($(this).attr('href'));
+                return false;
             });
         },
 
         _getDocumentPath : function() {
             return '/docs/' + this.options.documentID;
-        },
-
-        _prepareDraggables : function() {
-            $(".newcontent").draggable({
-                helper: 'clone',
-                cursor: 'crosshair',
-                opacity: 0.6,
-                zIndex: 5000
-            });
         },
 
         _newClip : function(target, contentType, location) {
@@ -62,18 +65,23 @@
 
         _createClips : function() {
             var self = this;
-            var ondropped = function(target, contentType, location) {
-                self._newClip(target, contentType, location);
-            }
-            var first = $("<div />").slot({
-                location : 'first',
-                drop : ondropped
-            });
-            $('.clips', this.element).prepend(first);
             var documentPath = self._getDocumentPath();
-            $('.clips li', this.element).clip({
-                documentPath : documentPath,
-                drop: ondropped
+            
+            $("<div />").slot({
+                location: '',
+                contentSelector : self.contentSelector
+            }).prependTo($('.clips', this.element));
+            
+            // init clips and add slots
+            var clips = $('.clips li', this.element)
+            clips.clip({
+                documentPath : documentPath
+            });
+            clips.each(function() {
+                $(this).after($("<div />").slot({
+                    location: '',
+                    contentSelector : self.contentSelector
+                }));
             });
         },
 
@@ -85,7 +93,8 @@
         getter: "length ", //for methods that are getters, not chainables
         defaults: {
             editable: true,
-            newClipPath : '/clips/new.js'
+            newClipPath : '/clips/new.js',
+            docsPath: '/docs'
         }
     });
 })(jQuery);

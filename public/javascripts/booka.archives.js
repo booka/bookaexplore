@@ -2,6 +2,7 @@
     $.widget("ui.archives", {
         document : null,
         browser: null,
+        tools : null,
         active : false,
         
         // options: provided by framework
@@ -10,15 +11,16 @@
             var self = this;
             $(window).bind( 'hashchange', function(e) {
                 var fragment = $.param.fragment();
-                if (/^\/archives$/.test(fragment)) {
-                    $.bbq.pushState("#/archives/all");
-                }
-                if (/^\/archives\/all/.test(fragment)) {
-                    if (!this.active) {
+                if(/^\/archives/.test(fragment)) {
+                    if (!self.active) {
                         self.element.empty();
-                        self.element.append(self.document).append(self.browser)
-                        // FIXME
+                        self.element.append(self.document).append(self.browser).append(self.tools);
                         self.active = true;
+                    }
+                } else {
+                    if (self.active) {
+                        self.element.empty();
+                        this.active = false;
                     }
                 }
             });
@@ -27,11 +29,12 @@
             self.browser = $('<div class="explorer browser" />').browser({
                 documents_path :this.options.documents_path
             });
+            self.tools = $('<div class="tools" />');
         },
 
 
         destroy: function() {
-            $.widget.prototype.destroy.apply(this, arguments); 
+            $.widget.prototype.destroy.apply(this, arguments);
         }
     });
     $.extend($.ui.archives, {
