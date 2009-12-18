@@ -14,6 +14,12 @@
                     self._loadDocument(result[1]);
                 }
             });
+
+            $(self.element).hover(function() {
+                self.element.addClass('active');
+            }, function() {
+                self.element.removeClass('active');
+            });
         },
 
         _loadDocument : function(id) {
@@ -32,10 +38,20 @@
         },
 
         _createContentSelector : function (holder) {
+            var self = this;
             this.contentSelector = $('.contentSelector', holder);
             $('a', this.contentSelector).click(function(e) {
-                var slot = $(this).parent().parent();
-                slot.slot('selector', false).load($(this).attr('href'));
+                var slot = $(this).parents('.slot');
+                var prevClip = slot.prev('.clip');
+                var location = ''
+                if (prevClip.size() == 0) {
+                    location = "first"
+                } else {
+                    location = "after-" + prevClip.clip('getClipID');
+                }
+                var contentType = $(this).attr('id').substring('select-'.length);
+                self._newClip(slot, contentType, location);
+                slot.slot('selector', false);
                 return false;
             });
         },
@@ -56,21 +72,22 @@
                 $.param(params), function(html, status) {
                     var newClip = $('<li />');
                     newClip.insertAfter(target).clip({
-                        drop: function(target, contentType, location) {
-                            self._newClip(target, contentType, location);
+                        onCreate: function() {
+                            newClip.after(self._createSlot());
                         }
                     }).clip('setEditor', html);
                 });
+        },
+
+        _createSlot : function() {
+            return $("<div />").slot({contentSelector : this.contentSelector });
         },
 
         _createClips : function() {
             var self = this;
             var documentPath = self._getDocumentPath();
             
-            $("<div />").slot({
-                location: '',
-                contentSelector : self.contentSelector
-            }).prependTo($('.clips', this.element));
+            self._createSlot().prependTo($('.clips', this.element));
             
             // init clips and add slots
             var clips = $('.clips li', this.element)
@@ -78,10 +95,7 @@
                 documentPath : documentPath
             });
             clips.each(function() {
-                $(this).after($("<div />").slot({
-                    location: '',
-                    contentSelector : self.contentSelector
-                }));
+                $(this).after(self._createSlot());
             });
         },
 

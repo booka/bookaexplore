@@ -32,7 +32,6 @@
     });
     
     $.extend($.ui.slot, {
-        getter: "getID ",
         defaults: {
             contentSelector : '<div class="contentSelector">Error</div>'
         }

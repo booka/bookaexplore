@@ -12,22 +12,22 @@
                 $('.actions', element).slideToggle();
             });
 
-            $("a.edit", this.element).live("click", function(event) {
-                alert("EDIT: " + self._getClipPath());
+            $("a.edit", this.element).click(function(event) {
+                self.edit();
                 return false;
             });
-            $("a.delete", this.element).live("click", function(event) {
+            $("a.delete", this.element).click(function(event) {
                 alert("DELETE: " + self._getClipPath());
                 return false;
             });
         },
 
-        _addSlot : function() {
-            var slot = $('<div class="slot ready">').slot({
-                location : 'after' + this.getClipID(),
-                drop: this.options.drop
+        edit : function() {
+            var self = this;
+            var url = self._getClipPath() + "/edit.js";
+            $.get(url, function(data) {
+                self.setEditor(data);
             });
-            this.element.addClass('clip').after(slot);
         },
 
         getClipID : function() {
@@ -36,26 +36,30 @@
         },
 
         _getClipPath : function() {
-            return this.options.documentPath + '/clip/' + this.getClipID();
+            return this.options.documentPath + '/clips/' + this.getClipID();
         },
 
         setEditor : function(html) {
             var self = this;
+            $('.actions', self.element).hide();
             var editor = $('<div />').clipeditor({
                 editor : html,
                 cancel : function() {
                     if (self.getClipID() == null) { // canceled a new clip
                         self.element.remove();
                     } else {
-                        self.element.show();
+                        self.element.fadeIn();
                     }
                 },
-                edit : function(content) {
-                    self.element.html(content).show();
-                    if (self.getClipID() == null) { // edited a new clip
-                        self._addSlot();
+                edit : function(response) {
+                    var content = $(response);
+                    self.element.html(content.html());
+
+                    if (self.getClipID() == null) {
+                        self.element.attr('id', content.attr('id'));
+                        self.options.onCreate();
                     }
-                    
+                    self.element.fadeIn();
                 }
             });
 
@@ -68,7 +72,9 @@
         }
     });
     $.extend($.ui.clip, {
-        defaults: {      
+        getter: "getClipID ",
+        defaults: {
+            onCreate : function() {},
             actions: '<div class="actions" style="display: none;"><a href="#" class="edit">Editar</a><a href="#" class="delete">Borrar</a></div>'
         }
     });

@@ -17,8 +17,8 @@
 </div>
 
 <div id="content-selector<%= @document.id %>" class="contentSelector">
-  <%=  link_to 'Texto', new_document_clip_path(@document, :content_type => 'text', :format => 'js') %>
-  <%=  link_to 'Video', new_document_clip_path(@document, :content_type => 'video', :format => 'js') %>
+  <%=  link_to 'Texto', '#', :id => 'select-text' %>
+  <%=  link_to 'Video', '#', :id => 'select-video' %>
 </div>
 
 <div id="document-editor<%= @document.id %>" class="editor">

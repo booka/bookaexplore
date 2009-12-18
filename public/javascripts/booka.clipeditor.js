@@ -17,14 +17,13 @@
                 }, "html");
                 return false;
             });
-            editor.slideDown('slow');
+            editor.fadeIn('slow');
         },
 
         _remove : function() {
             var editor = this.element;
-            editor.slideUp(function() {
-                editor.remove();
-            });
+            editor.hide();
+            editor.remove();
         },
 
         destroy: function() {

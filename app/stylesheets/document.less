@@ -11,26 +11,24 @@
 .document h1 {font-size: 200%; text-align: center;}
 .document p.description {text-align: center;}
 
+/** SLOTS **/
 .document .slot {
     width: 50%;
-    display: block;  margin: 2px auto; color: white; padding: 1px 0;
-    background-color: @azulclaro; border: 1px solid white;
+    display: block;  margin: 2px auto; color: white; padding: 2px 0;
+    background-color: white; border: 1px solid white;
 }
+.document.active .slot {background-color: @azulclaro;}
+.document .slot.active {width: 100%;}
 .document .slot:hover {border-color: @azul;}
-.document .slot.active {
-    width: 100%; border-color: @azul; background-color: @grisclaro;
-}
-.document .sortme {display: block; overflow: hidden; float: left; width: 0.3em; height: 1.2em;
-                   text-indent: -1000px; margin-right: 0.5em;
-                   background-color: @azulclaro;}
 
 .document .slot.editor {
     width: 100%;
     background-color: @azul;}
 
 .document .contentSelector {
-    font-family: @sans; font-size: 80%;
     width: 100%; overflow: hidden;
+    background-color: @grisclaro;
+    font-family: @sans; font-size: 70%;
 }
 
 .document .contentSelector a {
@@ -55,18 +53,29 @@
     color: white; background-color: @gris; .button;
 }
 
-.clip-editor {
-    font-size: 80%; background-color: @azul; color: white; padding: 0.5em 0;
-    font-family: @sans; }
-.clip-editor form { margin: 0.5em 1em;}
-.clip-editor input[type=submit] {
-    margin: 2px 1em 0 -1px; }
 
-/** FORMS **/
-form li label {}
-form textarea {
+/** CLIP EDITOR **/
+.clip-editor {
+    font-size: 70%;  padding: 0.5em 0; margin: 3px 0;
+    font-family: @sans; background-color: @grisclaro; color: @gris;
+    border: 1px solid @gris;
+}
+.clip-editor form {
+    margin: 0.5em 1em;
+}
+.clip-editor form li label {}
+.clip-editor form textarea {
     width: 100%; height: 4em;
-    color: white; background-color: @azul; border: 1px solid @azulclaro;}
+    color: black; background-color: white;
+    border: 1px solid @gris;
+}
+.clip-editor .actions {width: 100%; overflow: hidden;}
+.clip-editor .actions  * {
+    float: left; margin: 5px 5px 0 0;}
+.clip-editor .actions > a {
+    color: white; margin-top: 5px;
+    background-color: @gris; .button;
+}
 
 
 

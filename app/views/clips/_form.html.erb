@@ -7,6 +7,7 @@
     <%= form.text_area :body %>
   </li>
   <li class="actions">
-    <%= form.submit 'Crear' %><%= link_to 'Cancelar', document_path(@clip.document), :class => 'cancel' %>
+    <%= form.submit 'Crear' %>
+    <%= link_to 'Cancelar', document_path(@clip.document), :class => 'cancel' %>
   </li>
 <% end %>
